@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper">
+  <select parameterType="map" id="consultarItems" resultMap="ItemResult">
+    select
+    i.id as i_id,
+    i.nombre as i_nombre,
+    i.descripcion as i_descripcion,
+    i.fechalanzamiento as i_fechalanzamiento,  
+    i.tarifaxdia as i_tarifaxdia,
+    i.formatorenta as i_formatorenta,
+    i.genero as i_genero,
+    ti.id as ti_id,
+    ti.descripcion as ti_descripcion
+    FROM VI_ITEMS as i 
+    left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id
+  </select>
+  <select parameterType="map" id="consultarItem" resultMap="ItemResult">
+    select
+    i.id as i_id,
+    i.nombre as i_nombre,
+    i.descripcion as i_descripcion,
+    i.fechalanzamiento as i_fechalanzamiento,  
+    i.tarifaxdia as i_tarifaxdia,
+    i.formatorenta as i_formatorenta,
+    i.genero as i_genero,
+    ti.id as ti_id,
+    ti.descripcion as ti_descripcion
+    FROM VI_ITEMS as i 
+    left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id
+    WHERE i.id = #{idt}
+  </select>
+  <resultMap id="ItemResult" type="Item">
+    <id property="id" column="i_id"/>
+    <result property="nombre" column="i_nombre"/>
+    <result property="descripcion" column="i_descripcion"/>
+    <result property="fechaLanzamiento" column="i_fechalanzamiento"/>
+    <result property="tarifaxDia" column="i_tarifaxdia"/>
+    <result property="formatoRenta" column="i_formatoRenta"/>
+    <result property="genero" column="i_genero"/>
+    <association property="tipo" javaType="TipoItem" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper.ItemResult" columnPrefix="ti_"/>
+  </resultMap>
+    
+  <insert id="insertItem" parameterType="map">
+    insert into VI_ITEMS(nombre,descripcion,fechalanzamiento,tarifaxdia,formatorenta,genero,TIPOITEM_id,id) values (#{item.nombre},#{item.descripcion},#{item.fechaLanzamiento},#{item.tarifaxDia},#{item.formatoRenta},#{item.genero},#{item.tipo.id},#{item.id});
+  </insert>
+</mapper>
