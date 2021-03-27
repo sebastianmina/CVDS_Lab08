@@ -20,5 +20,9 @@ public interface ItemMapper {
     
     public void insertarItem(@Param("item")Item it);
 
+    public List<Item> consultarItemsDisponibles();
+
+    public void actualizarTarifaItem(@Param("id") int id, @Param("tarifa") long tarifa);
+
         
 }

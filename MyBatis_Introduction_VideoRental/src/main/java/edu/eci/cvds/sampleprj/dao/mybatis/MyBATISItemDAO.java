@@ -9,7 +9,11 @@ import edu.eci.cvds.samples.entities.Item;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper;
 import edu.eci.cvds.samples.entities.TipoItem;
 import java.sql.SQLException;
-
+import java.util.List;
+/**
+ * @author Luis Amaya
+ * @author Sebastian Mina
+ */
 public class MyBATISItemDAO implements ItemDAO{
 
     @Inject
@@ -37,5 +41,23 @@ public class MyBATISItemDAO implements ItemDAO{
 
 
     }
+
+	@Override
+	public List<Item> loadItems() throws PersistenceException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void actualizarTarifaItem(int id, long tarifa) throws PersistenceException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Item> consultarItemsDisponibles() throws PersistenceException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
     }
