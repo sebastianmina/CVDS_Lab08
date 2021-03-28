@@ -113,8 +113,8 @@ public class AlquilerItemBeans extends BasePageBean{
     public void consultarCosto(int iditem , int numdias) throws ExcepcionServiciosAlquiler {
         try {
             this.costo = serviciosAlquiler.consultarCostoAlquiler(iditem, numdias);
-        } catch (ExcepcionServiciosAlquiler excepcionServiciosAlquiler) {
-            throw new ExcepcionServiciosAlquiler("Error al consultar costo alquiler");
+        } catch (ExcepcionServiciosAlquiler e) {
+            throw new ExcepcionServiciosAlquiler("Error al consultar costo alquiler "+e);
         }
     }
 }
