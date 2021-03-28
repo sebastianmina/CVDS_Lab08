@@ -175,5 +175,7 @@ En este laboratorio se utilizará un 'framework' de persistencia. La base de dat
 	
 ## LINKS DE VERIFICACIÓN DE LA APLICACIÓN
 
-https://amayamina2.herokuapp.com/faces/registroalquiler.xhtml
-https://amayamina2.herokuapp.com/faces/registrocliente.xhtml
+[![CircleCI](https://circleci.com/gh/sebastianmina/CVDS_Lab08.svg?style=shield)](https://app.circleci.com/pipelines/github/sebastianmina)
+
+- https://amayamina2.herokuapp.com/faces/registroalquiler.xhtml
+- https://amayamina2.herokuapp.com/faces/registrocliente.xhtml
