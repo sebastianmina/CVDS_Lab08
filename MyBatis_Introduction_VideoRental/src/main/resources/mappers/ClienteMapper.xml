@@ -6,7 +6,7 @@
 <mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper">
 
   <select parameterType="map" id="consultarClientes" resultMap="ClienteResult">
-    select
+    SELECT
     c.nombre as c_nombre,
     c.documento as c_documento,
     c.telefono as c_telefono,
@@ -32,7 +32,7 @@
   </select>
   
   <select parameterType="map" id="consultarCliente" resultMap="ClienteResult">
-    select
+    SELECT
     c.nombre as c_nombre,
     c.documento as c_documento,
     c.telefono as c_telefono,
@@ -57,6 +57,41 @@
     left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id 
     WHERE c.documento = #{idcli}
   </select>
+  <select parameterType="map" id="consultarItems" resultMap="ClienteResult">
+    SELECT
+    c.nombre as c_nombre,
+    c.documento as c_documento,
+    c.telefono as c_telefono,
+    c.direccion as c_direccion,
+    c.email as c_email,
+    c.vetado as  c_vetado,
+    ir.id as ir_id,
+    ir.fechainiciorenta as ir_fechainiciorenta,
+    ir.fechafinrenta as ir_fechafinrenta,
+    i.id as i_id,
+    i.nombre as i_nombre,
+    i.descripcion as i_descripcion,
+    i.fechalanzamiento as i_fechalanzamiento,
+    i.tarifaxdia as i_tarifaxdia,
+    i.formatorenta as i_formatorenta,
+    i.genero as i_genero,        
+    ti.id as ti_id,
+    ti.descripcion as ti_descripcion 
+    FROM VI_CLIENTES as c 
+    left join VI_ITEMRENTADO as ir on c.documento=ir.CLIENTES_documento 
+    left join VI_ITEMS as i on ir.ITEMS_id=i.id 
+    left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id 
+    WHERE c.documento = #{idcliente}
+  </select>
+  <insert id="agregarItemRentadoACliente" parameterType="map">
+    INSERT INTO VI_ITEMRENTADO(CLIENTES_documento, ITEMS_id, fechainiciorenta, fechafinrenta) VALUES (#{idcli}, #{idit}, #{fechainicio}, #{fechafin});
+  </insert>
+  <insert id="registrarCliente" parameterType="map">
+    INSERT INTO VI_CLIENTES VALUES (#{cliente.documento}, #{cliente.nombre}, #{cliente.telefono}, #{cliente.direccion}, #{cliente.email}, #{cliente.vetado});
+  </insert>
+  <update id="vetarCliente" parameterType="map">
+  UPDATE VI_CLIENTES set vetado=#{estado} WHERE documento=#{docu};
+  </update>
   <resultMap type='Cliente' id='ClienteResult'>
     <id property='documento' column='c_documento'/>
     <result property='nombre' column='c_nombre'/>
@@ -66,7 +101,5 @@
     <result property="vetado" column="c_vetado"/>
     <collection property='rentados' ofType='ItemRentado' columnPrefix="ir_"></collection>
   </resultMap>
-  <insert id="agregarItemRentadoACliente" parameterType="map">
-    insert into VI_ITEMRENTADO(CLIENTES_documento, ITEMS_id, fechainiciorenta, fechafinrenta) values (#{idcli}, #{idit}, #{fechainicio}, #{fechafin});
-  </insert>
+
 </mapper>

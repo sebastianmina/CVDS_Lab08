@@ -29,6 +29,23 @@
     left join VI_ITEMS as i on ir.ITEMS_id=i.id 
     left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id
   </select>
+
+  <select parameterType="map" id="getTiposItems" resultMap="TipoItemResult">
+    SELECT
+    ti.id as ti_id, 
+    ti.descripcion as ti_descripcion
+    FROM VI_TIPOITEM as ti;
+  </select>
+  <select parameterType="map" id="getTipoItem" resultMap="TipoItemResult">
+    SELECT 
+    ti.id as ti_id, 
+    ti.descripcion as ti_descripcion,
+    FROM VI_TIPOITEM as ti
+    WHERE ti.id=#{idti}
+  </select>
+  <insert parameterType="map" id="addTipoItem">
+    INSERT INTO VI_TIPOITEM(id,descripcion) values (#{ti.id}, #{ti.descripcion});
+  </insert>
   <resultMap id="TipoItemResult" type="TipoItem">
     <id property="id" column="ti_id"/>
     <result property="descripcion" column="ti_descripcion"/>

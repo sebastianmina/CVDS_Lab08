@@ -16,7 +16,7 @@
     ti.id as ti_id,
     ti.descripcion as ti_descripcion
     FROM VI_ITEMS as i 
-    left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id
+    left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id;
   </select>
   <select parameterType="map" id="consultarItem" resultMap="ItemResult">
     select
@@ -31,8 +31,24 @@
     ti.descripcion as ti_descripcion
     FROM VI_ITEMS as i 
     left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id
-    WHERE i.id = #{idt}
+    WHERE i.id = #{idt};
   </select>
+  <select parameterType="map" id="consultarMultaRetrasoxDia" resultMap="ItemResult">
+    SELECT
+    i.tarifaxdia as i_tarifaxdia
+    FROM VI_ITEMS as i 
+    WHERE i.id=#{id};
+  </select>
+  <select parameterType="map" id="consultarItemsDisponibles" resultMap="ItemResult">
+    SELECT 
+    i.nombre as i_nombre,
+    i.descripcion as i_descripcion,
+    FROM VI_ITEMS as i
+    WHERE i.id not in (SELECT ir.id from VI_ITEMRENTADO as ir);
+  </select>
+  <update parameterType="map" id="actualizarTarifaItem">
+    UPDATE VI_ITEMS set tarifaxdia=#{tarifa} WHERE id=#{id};
+  </update>
   <resultMap id="ItemResult" type="Item">
     <id property="id" column="i_id"/>
     <result property="nombre" column="i_nombre"/>
@@ -44,7 +60,7 @@
     <association property="tipo" javaType="TipoItem" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper.ItemResult" columnPrefix="ti_"/>
   </resultMap>
     
-  <insert id="insertItem" parameterType="map">
-    insert into VI_ITEMS(nombre,descripcion,fechalanzamiento,tarifaxdia,formatorenta,genero,TIPOITEM_id,id) values (#{item.nombre},#{item.descripcion},#{item.fechaLanzamiento},#{item.tarifaxDia},#{item.formatoRenta},#{item.genero},#{item.tipo.id},#{item.id});
+  <insert id="insertarItem" parameterType="map">
+    INSERT INTO VI_ITEMS(nombre,descripcion,fechalanzamiento,tarifaxdia,formatorenta,genero,TIPOITEM_id,id) values (#{item.nombre},#{item.descripcion},#{item.fechaLanzamiento},#{item.tarifaxDia},#{item.formatoRenta},#{item.genero},#{item.tipo.id},#{item.id});
   </insert>
 </mapper>
