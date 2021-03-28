@@ -81,4 +81,40 @@ public class AlquilerItemBeans extends BasePageBean{
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
+    /**
+    * Este método registra al cliente.
+    * @param idItem
+    * @param numdias
+    */
+    public void registrarAlquiler(int idItem , int numdias) throws ExcepcionServiciosAlquiler {
+        Item item = serviciosAlquiler.consultarItem(idItem);
+        serviciosAlquiler.registrarAlquilerCliente(new Date(System.currentTimeMillis()),cliente.getDocumento(),item,numdias);
+    }
+
+    /**
+    * Este método consulta la multa.
+    * @param idItem
+    */
+
+    public long consultarMulta(int iditem) throws ExcepcionServiciosAlquiler {
+        try {
+            return serviciosAlquiler.consultarMultaAlquiler(iditem, new Date(System.currentTimeMillis()));
+        } catch (ExcepcionServiciosAlquiler excepcionServiciosAlquiler) {
+            throw new ExcepcionServiciosAlquiler("Error al consultar multa alquiler");
+        }
+    }
+
+    /**
+    * Este método consulta los costos.
+    * @param idItem
+    * @param numdias
+    */
+    public void consultarCosto(int iditem , int numdias) throws ExcepcionServiciosAlquiler {
+        try {
+            this.costo = serviciosAlquiler.consultarCostoAlquiler(iditem, numdias);
+        } catch (ExcepcionServiciosAlquiler excepcionServiciosAlquiler) {
+            throw new ExcepcionServiciosAlquiler("Error al consultar costo alquiler");
+        }
+    }
 }
