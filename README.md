@@ -176,6 +176,20 @@ En este laboratorio se utilizará un 'framework' de persistencia. La base de dat
 ## LINKS DE VERIFICACIÓN DE LA APLICACIÓN
 
 [![CircleCI](https://circleci.com/gh/sebastianmina/CVDS_Lab08.svg?style=shield)](https://app.circleci.com/pipelines/github/sebastianmina)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/92a9d95d91644dfc81618498987f79bd)](https://www.codacy.com/gh/sebastianmina/CVDS_Lab08/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sebastianmina/CVDS_Lab08&amp;utm_campaign=Badge_Grade)
 
 - https://amayamina2.herokuapp.com/faces/registroalquiler.xhtml
 - https://amayamina2.herokuapp.com/faces/registrocliente.xhtml
+
+## PANTALLAZOS DEL DESARROLLO DEL LABORATORIO
+
+# Parte 1
+![Parte1](https://github.com/sebastianmina/CVDS_Lab08/blob/master/images/ProgramaConMainSuministradoYConConsultaDeCliente.PNG)
+![Parte1Punto9](https://github.com/sebastianmina/CVDS_Lab08/blob/master/images/ParteI%20Punto%209%20funcionando.PNG)
+
+# Parte 2
+![Parte2](https://github.com/sebastianmina/CVDS_Lab08/blob/master/images/Parte%202%20Pruebas.PNG)
+
+# Parte 3
+![Parte3](https://github.com/sebastianmina/CVDS_Lab08/blob/master/images/Parte%203%20Consultar%20y%20Registrar%20Costo%20Alquiler.PNG)
+![Parte3](https://github.com/sebastianmina/CVDS_Lab08/blob/master/images/Parte%203%20Registrar%20Cliente.PNG)
