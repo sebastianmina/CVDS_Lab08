@@ -13,17 +13,17 @@ import edu.eci.cvds.samples.entities.Cliente;
  */
 public interface ClienteMapper {
     
-    public Cliente consultarCliente(@Param("idcli") int id); 
+    public Cliente consultarCliente(@Param("idcli") long id); 
     
     /**
      * Registrar un nuevo item rentado asociado al cliente identificado
      * con 'idc' y relacionado con el item identificado con 'idi'
-     * @param id
+     * @param idcli
      * @param idit
      * @param fechainicio
      * @param fechafin 
      */
-    public void agregarItemRentadoACliente(@Param("idcli") int id, 
+    public void agregarItemRentadoACliente(@Param("idcli") long idcli, 
             @Param("idit") int idit, 
             @Param("fechainicio") Date fechainicio,
             @Param("fechafin") Date fechafin);

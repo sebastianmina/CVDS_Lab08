@@ -44,20 +44,30 @@ public class MyBATISItemDAO implements ItemDAO{
 
 	@Override
 	public List<Item> loadItems() throws PersistenceException {
-		// TODO Auto-generated method stub
-		return null;
+		try{
+            return itemMapper.consultarItems();
+        }catch(Exception e){
+            throw new PersistenceException("Error al consultar los items", e);
+        }
 	}
 
 	@Override
 	public void actualizarTarifaItem(int id, long tarifa) throws PersistenceException {
-		// TODO Auto-generated method stub
+		try{
+            itemMapper.actualizarTarifaItem(id, tarifa);
+        }catch(Exception e){
+            throw new PersistenceException("Error al actualizar la tarifa con id: "+id+ "con la tarifa: " +tarifa, e);
+        }
 		
 	}
 
 	@Override
 	public List<Item> consultarItemsDisponibles() throws PersistenceException {
-		// TODO Auto-generated method stub
-		return null;
+		try{
+            return itemMapper.consultarItemsDisponibles();
+        }catch(Exception e){
+            throw new PersistenceException("Error al consultar todos los items disponibles", e);
+        }
 	}
 
     }

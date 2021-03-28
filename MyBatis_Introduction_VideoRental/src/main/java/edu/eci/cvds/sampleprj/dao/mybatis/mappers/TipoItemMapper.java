@@ -11,6 +11,6 @@ public interface TipoItemMapper {
     
     public TipoItem getTipoItem(@Param("idti") int id) throws PersistenceException;
     
-    public void addTipoItem(@Param("ti") String des) throws PersistenceException;
+    public void addTipoItem(@Param("ti") TipoItem tipoItem) throws PersistenceException;
 
 }
