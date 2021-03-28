@@ -172,3 +172,8 @@ En este laboratorio se utilizará un 'framework' de persistencia. La base de dat
 	```
 	
 	Verifique el funcionamiento haciendo una consulta a través del 'mapper' desde MyBatisExample.
+	
+## LINKS DE VERIFICACIÓN DE LA APLICACIÓN
+
+https://amayamina2.herokuapp.com/faces/registroalquiler.xhtml
+https://amayamina2.herokuapp.com/faces/registrocliente.xhtml
