@@ -37,11 +37,9 @@
     FROM VI_TIPOITEM as ti;
   </select>
   <select parameterType="map" id="getTipoItem" resultMap="TipoItemResult">
-    SELECT 
-    ti.id as ti_id, 
-    ti.descripcion as ti_descripcion,
+    select ti.id as ti_id, ti.descripcion as ti_descripcion
     FROM VI_TIPOITEM as ti
-    WHERE ti.id=#{idti}
+    WHERE ti.id= #{idti};
   </select>
   <insert parameterType="map" id="addTipoItem">
     INSERT INTO VI_TIPOITEM(id,descripcion) values (#{ti.id}, #{ti.descripcion});

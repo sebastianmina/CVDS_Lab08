@@ -4,7 +4,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="edu.eci.cvds.samplerj.dao.mybatis.mappers.ItemRentadoMapper">
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemRentadoMapper">
     <select parameterType="map" id="consultarItemRentado" resultMap="ItemRentadoResult">
         SELECT 
         ir.id as ir_id,

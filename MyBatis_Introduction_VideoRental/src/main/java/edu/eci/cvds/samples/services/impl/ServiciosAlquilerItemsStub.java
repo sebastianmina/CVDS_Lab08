@@ -29,13 +29,16 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
 
     private final Map<Integer,Long> mapaPrestamosPorIdCliente;
 
+    private static ServiciosAlquilerItemsStub instance = new ServiciosAlquilerItemsStub();
+
+
     public ServiciosAlquilerItemsStub() {
         clientes = new HashMap<>();
         itemsDisponibles = new HashMap<>();
         itemsrentados = new HashMap<>();
         tipositems = new HashMap<>();
         mapaPrestamosPorIdCliente=new HashMap<>();
-       //poblar();
+        poblar();
     }
 
     @Override
@@ -238,5 +241,9 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
         clientes.put(c2.getDocumento(), c2);
         clientes.put(c3.getDocumento(), c3);
 
+    }
+
+    public static ServiciosAlquilerItemsStub getInstance(){
+        return instance;
     }
 }

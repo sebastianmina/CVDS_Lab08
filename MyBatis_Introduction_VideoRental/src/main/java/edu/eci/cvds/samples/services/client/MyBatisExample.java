@@ -28,8 +28,12 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper;
+import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemRentadoMapper;
+import edu.eci.cvds.sampleprj.dao.mybatis.mappers.TipoItemMapper;
 import edu.eci.cvds.samples.entities.Item;
 import edu.eci.cvds.samples.entities.TipoItem;
 /**
@@ -62,14 +66,17 @@ public class MyBatisExample {
      * Programa principal de ejempo de uso de MyBATIS
      * @param args
      * @throws SQLException 
+     * @throws PersistenceException
      */
-    public static void main(String args[]) throws SQLException {
+    public static void main(String args[]) throws SQLException, PersistenceException {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
 
         SqlSession sqlss = sessionfact.openSession();
 
         ClienteMapper cm = sqlss.getMapper(ClienteMapper.class);
         ItemMapper im = sqlss.getMapper(ItemMapper.class);
+        TipoItemMapper tim = sqlss.getMapper(TipoItemMapper.class);
+        ItemRentadoMapper irm = sqlss.getMapper(ItemRentadoMapper.class);
         System.out.println("Consultar Clientes PA");
         System.out.println("-----------------------");
         System.out.println(cm.consultarClientes());
@@ -82,6 +89,18 @@ public class MyBatisExample {
         System.out.println("-----------------------");
         System.out.println("Consultar Item con ID 1234");
         System.out.println(im.consultarItem(1234));
+        System.out.println("-----------------------");
+        System.out.println("Consultar todos los items rentados");
+        System.out.println(irm.consultarItemsRentados());
+        System.out.println("-----------------------");
+        System.out.println("Consultar Item Rentado con id 2132738");
+        System.out.println(irm.consultarItemRentado(2132738));
+        System.out.println("-----------------------");
+        System.out.println("Consultar todos los tipos de items");
+        System.out.println(tim.getTiposItems());
+        System.out.println("-----------------------");
+        System.out.println("Consultar tipo de item con Id 90");
+        System.out.println(tim.getTipoItem(90));
         System.out.println("-----------------------");
         try {
             cm.agregarItemRentadoACliente(4, 2, new SimpleDateFormat("yyyy-MM-dd").parse("2021-03-17"), new SimpleDateFormat("yyyy-MM-dd").parse("2021-04-17"));
